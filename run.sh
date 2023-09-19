@@ -4,7 +4,6 @@ XAUTH=/tmp/.docker.xauth
 
 docker run -it \
     --rm \
-    --name=rvl-base \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --env="XAUTHORITY=$XAUTH" \
@@ -14,8 +13,10 @@ docker run -it \
     --gpus all \
     --ulimit memlock=-1 \
     --ulimit stack=67108864 \
+     --net=host \
+     --privileged \
     --volume="$(pwd)/demo:/app" \
-    hsun/rvl-base:1.0.0 \
+    tokohsun/rvl-base:1.0.0 \
     /bin/bash
 
 
